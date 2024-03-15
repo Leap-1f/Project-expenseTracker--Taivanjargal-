@@ -1,5 +1,4 @@
-import DashboardPage from "@/components/layout/DashboardPage"
-
-export default function Dashboard(){
-    return <DashboardPage></DashboardPage>
+import Record from "@/components/layout/Record";
+export default function Dashboard() {
+  return <Record></Record>;
 }

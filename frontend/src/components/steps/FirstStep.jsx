@@ -1,6 +1,12 @@
 import { Logo, Button } from "../supplier";
+import { useRouter } from "next/router"; // Import the useRouter hook
 
 export function FirstStep() {
+  const router = useRouter(); // Initialize the router
+
+  const toSecondStep = () => {
+    router.push("/stepper/secondstep"); // Navigate to the "/steps/SecondStep" path d s
+  };
   return (
     <div className=" flex flex-col items-center gap-y-36 h-screen">
       <div className="flex flex-col items-center mt-10 gap-y-12">
@@ -52,7 +58,6 @@ export function FirstStep() {
           Your base currency should be the one you use most often. All
           transaction in other currencies will be calculated based on this one{" "}
         </div>
-        <Button text={"Confirm"} addClass={"w-[300px]"}></Button>
       </div>
     </div>
   );

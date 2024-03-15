@@ -30,7 +30,6 @@ export function ThirdStep() {
           Your very first account has been created. Now continue to dashboard
           and start tracking
         </div>
-        <Button text={"Go to dashboard"} addClass={"w-[383px]"}></Button>
       </div>
     </div>
   );

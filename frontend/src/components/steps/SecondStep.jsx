@@ -1,10 +1,16 @@
 import { Input, Logo, Button } from "../supplier/index";
+import { useRouter } from "next/router";
 
 export function SecondStep() {
+  const router = useRouter();
+  const toThirdStep = () => {
+    router.push("/step/thirdstep");
+  };
   return (
     <div className="flex flex-col items-center gap-y-36">
       <div className="flex flex-col items-center mt-10 gap-y-12">
         <Logo></Logo>
+        
         <ul className="steps ">
           <li className="step step-info">Register</li>
           <li className="step step-info">Choose plan</li>
@@ -33,9 +39,7 @@ export function SecondStep() {
             How much cash do you have in your wallet?
           </p>
         </div>
-        <div className="mt-8">
-          <Button text={"Confirm "}></Button>
-        </div>
+       
       </div>
     </div>
   );

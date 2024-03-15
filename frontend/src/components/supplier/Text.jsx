@@ -1,3 +1,5 @@
+import { jsx } from "react/jsx-runtime";
+
 const Text = ({text, addClass}) => {
     return (
       <div>
@@ -6,4 +8,4 @@ const Text = ({text, addClass}) => {
     );
 };
 
-export default Text;
+export default Text

@@ -3,8 +3,10 @@ import { Logo, Button, Input, Text } from "../supplier/index";
 import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 import { userSchema } from "../validation/UserValid";
+import { useRouter } from "next/router";
 
 export const SignUpPage = () => {
+  const router = useRouter();
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -13,7 +15,6 @@ export const SignUpPage = () => {
   });
   const createData = async (event) => {
     event.preventDefault();
-    const isValid = await userSchema.isValid(userData);
     const id = uuidv4();
     try {
       const response = await fetch("http://localhost:3001/users", {
@@ -31,6 +32,7 @@ export const SignUpPage = () => {
     } catch (error) {
       console.error("Error:", error);
     }
+
   };
 
   return (
