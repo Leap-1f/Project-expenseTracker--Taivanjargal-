@@ -1,8 +1,11 @@
 import { DashboardPage } from "@/components/layout/DashboardPage";
 import { RecordPage } from "@/components/layout/RecordPage"
+import { useContext } from "react";
+import { Context } from "../utils/Context";
 
 export default function Record() {
-  return (
+  const {data } = useContext(Context)
+   return (
     <div>
       <div className="flex justify-center">
         <div className="items-baseline  w-[1401px] border-2 flex justify-between bg-white top-0 my-5">

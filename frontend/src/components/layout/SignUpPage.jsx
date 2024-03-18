@@ -32,7 +32,6 @@ export const SignUpPage = () => {
     } catch (error) {
       console.error("Error:", error);
     }
-
   };
 
   return (
