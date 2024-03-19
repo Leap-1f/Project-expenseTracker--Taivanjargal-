@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.modal-box {
-    width: 100%;
-  }
-  @media (min-width: 640px){
-    .modal-box {
-        max-width: 32rem;
-    }
+.input-class::placeholder {
+    height: 14px; /* Adjust the font size as needed */
   }

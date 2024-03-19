@@ -2,22 +2,24 @@ import { useContext } from "react";
 import { Button } from "../supplier";
 import { Plus, X } from "@phosphor-icons/react";
 import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const RecordPage = () => {
-  // const [position, setPosition] = useContext("Expense")
+  const [value, setValue] = useState("Expense");
   const [modalOpen, setModalOpen] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
 
   const openModal = () => {
     setModalOpen(true);
   };
-
   const closeModal = () => {
     setModalOpen(false);
   };
 
   const modalStyle = {
     width: "100%", // Set width to 100% to expand
-    maxWidth: "1000px", // Set max-width to 1000px
+    maxWidth: "900px", // Set max-width to 1000px
   };
 
   const data = [
@@ -48,29 +50,125 @@ export const RecordPage = () => {
                 <p>Add Record</p>
               </button>
               {modalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
-                  <div className="absolute inset-0 bg-black opacity-50"></div>
+                <div className="fixed inset-0 flex items-center justify-center z-50 ">
+                  <div className="absolute inset-0 bg-black opacity-50 "></div>
                   <div
-                    className="modal-box bg-white rounded-lg shadow-lg p-6"
+                    className="modal-box bg-white rounded-lg shadow-lg p-6 "
                     style={modalStyle}
                   >
-                    <div className="flex justify-between items-baseline mb-4">
+                    <div className="flex justify-between items-baseline pb-4 border-b-2">
                       <div>Add Record</div>
-                      <button onClick={closeModal}>Close</button>
+                      <div></div>
+                      <button onClick={closeModal}>
+                        <X></X>
+                      </button>
                     </div>
-                    <div className="flex">
-                      <div className="w-1/2"></div>
+                    <div className="flex *:text-lg font-normal">
                       <div className="w-1/2">
-                        <p>Payee</p>
-                        <div>
-                          <select className="select select-bordered w-full max-w-xs">
-                            <option disabled selected>
-                              Who shot first?
-                            </option>
-                            <option>Han Solo</option>
-                            <option>Greedo</option>
-                          </select>
+                        <div className="flex bg-[#F3F4F6] max-w-[400px] rounded-3xl my-6">
+                          <div
+                            className={`px-16 py-3 rounded-3xl ${
+                              value === "Expense"
+                                ? "bg-[#0166FF] text-white"
+                                : "bg-[#F3F4F6]"
+                            }`}
+                            onClick={() => setValue("Expense")}
+                            data-value="Expense"
+                          >
+                            Expense
+                          </div>
+                          <div
+                            className={`px-[73px] py-3 rounded-3xl ${
+                              value === "Income"
+                                ? "bg-[#16A34A] text-white"
+                                : "bg-[#F3F4F6]"
+                            }`}
+                            onClick={() => setValue("Income")}
+                            data-value="Income"
+                          >
+                            Income
+                          </div>
                         </div>
+                        <div className="flex flex-col gap-y-8">
+                          <div className="flex flex-col gap-y-6">
+                            <div>
+                              <div className="bg-[#F3F4F6] rounded-lg pt-2 border-[#D1D5DB] border-[1px] max-w-[400px]">
+                                <p className=" ml-4 text-base">Amount</p>
+                                <input
+                                  type="text"
+                                  placeholder="₮ 000.00"
+                                  style={{ fontSize: "24px" }}
+                                  className="input w-full max-w-xs bg-[#F3F4F6] "
+                                />
+                              </div>
+                            </div>
+                            <div>
+                              <label className="form-control w-full max-w-[400px]">
+                                <div className="label">
+                                  <span className="label-text ">Category</span>
+                                </div>
+                                <select className="select select-bordered bg-[#F3F4F6]">
+                                  <option disabled selected>
+                                    Pick one
+                                  </option>
+                                  <option>Star Wars</option>
+                                  <option>Harry Potter</option>
+                                  <option>Lord of the Rings</option>
+                                  <option>Planet of the Apes</option>
+                                  <option>Star Trek</option>
+                                </select>
+                              </label>
+                            </div>
+                            <div className="flex  gap-x-10">
+                              <div className="py-4 px-4 bg-[#F3F4F6] border-[1px] max-w-44 rounded-lg">
+                                <DatePicker
+                                  selected={startDate}
+                                  className="bg-[#F3F4F6] w-[150px]"
+                                  onChange={(date) => setStartDate(date)}
+                                />
+                              </div>
+                              <div className="py-4 px-4 bg-[#F3F4F6] border-[1px] max-w-44 rounded-lg">
+                                <DatePicker
+                                  selected={startDate}
+                                  className="bg-[#F3F4F6]  w-[150px]"
+                                  onChange={(date) => setStartDate(date)}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div>
+                            {" "}
+                            <button
+                              className={`flex flex-row btn w-[400px] btn-sm  h-auto
+        hover:bg-blue-700  text-lg font-normal text-white px-16 py-3 rounded-3xl ${
+          value === "Income" ? "bg-[#16A34A] text-white" : "bg-[#0166FF]"
+        }`}
+                            >
+                              <p> + Add Record</p>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-1/2 ml-7  ">
+                        <label className="form-control w-full  max-w-[400px]">
+                          <div className="label">
+                            <span className="label-text">Payee</span>
+                          </div>
+                          <input
+                            type="text"
+                            placeholder="Type here"
+                            className="input input-bordered w-full bg-[#F3F4F6]"
+                          />
+                        </label>
+                        <label className="form-control mt-5">
+                          <div className="label">
+                            <span className="label-text">Your bio</span>
+                          </div>
+                          <textarea
+                            className="textarea textarea-bordered h-[315px] bg-[#F3F4F6]"
+                            placeholder="Bio"
+                          ></textarea>
+                        </label>
                       </div>
                     </div>
                   </div>
