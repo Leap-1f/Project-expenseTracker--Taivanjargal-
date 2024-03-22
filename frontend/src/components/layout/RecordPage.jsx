@@ -1,22 +1,19 @@
-import { useContext } from "react";
-import { Button } from "../supplier";
 import { Plus, X } from "@phosphor-icons/react";
 import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { ModalComponent } from "../utils/ModalComponent";
+import Home from "@/pages";
+import { House } from "@phosphor-icons/react";
 
 export const RecordPage = () => {
-  const [value, setValue] = useState("Expense");
   const [modalOpen, setModalOpen] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
+  const [range, setRange] = useState([0, 100]);
 
-  const openModal = () => {
-    setModalOpen(true);
-  };
   const closeModal = () => {
     setModalOpen(false);
   };
-
+  const openModal = () => {
+    setModalOpen(true);
+  };
   const modalStyle = {
     width: "100%", // Set width to 100% to expand
     maxWidth: "900px", // Set max-width to 1000px
@@ -37,8 +34,8 @@ export const RecordPage = () => {
   return (
     <div>
       <div className=" bg-[#F3F4F6] h-auto pt-9 flex justify-center">
-        <div className=" max-w-[1401px] border-2 flex gap-x-[30px]">
-          <div className=" w-[300px] border-2 px-4 py-6 flex flex-col gap-y-6 bg-white">
+        <div className=" max-w-[1401px]  flex gap-x-[30px]">
+          <div className=" max-w-[350px]  px-5 py-6 flex flex-col gap-y-6 bg-white rounded-lg border-[1px]">
             <div className="text-2xl font-semibold flex flex-col gap-y-6">
               <p>Record</p>
               <button
@@ -46,8 +43,7 @@ export const RecordPage = () => {
         hover:bg-blue-700 bg-[#0166FF] text-lg font-normal text-white"
                 onClick={openModal}
               >
-                <Plus></Plus>
-                <p>Add Record</p>
+                <p className="font-slight">+ Add</p>
               </button>
               {modalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 ">
@@ -63,114 +59,7 @@ export const RecordPage = () => {
                         <X></X>
                       </button>
                     </div>
-                    <div className="flex *:text-lg font-normal">
-                      <div className="w-1/2">
-                        <div className="flex bg-[#F3F4F6] max-w-[400px] rounded-3xl my-6">
-                          <div
-                            className={`px-16 py-3 rounded-3xl ${
-                              value === "Expense"
-                                ? "bg-[#0166FF] text-white"
-                                : "bg-[#F3F4F6]"
-                            }`}
-                            onClick={() => setValue("Expense")}
-                            data-value="Expense"
-                          >
-                            Expense
-                          </div>
-                          <div
-                            className={`px-[73px] py-3 rounded-3xl ${
-                              value === "Income"
-                                ? "bg-[#16A34A] text-white"
-                                : "bg-[#F3F4F6]"
-                            }`}
-                            onClick={() => setValue("Income")}
-                            data-value="Income"
-                          >
-                            Income
-                          </div>
-                        </div>
-                        <div className="flex flex-col gap-y-8">
-                          <div className="flex flex-col gap-y-6">
-                            <div>
-                              <div className="bg-[#F3F4F6] rounded-lg pt-2 border-[#D1D5DB] border-[1px] max-w-[400px]">
-                                <p className=" ml-4 text-base">Amount</p>
-                                <input
-                                  type="text"
-                                  placeholder="₮ 000.00"
-                                  style={{ fontSize: "24px" }}
-                                  className="input w-full max-w-xs bg-[#F3F4F6] "
-                                />
-                              </div>
-                            </div>
-                            <div>
-                              <label className="form-control w-full max-w-[400px]">
-                                <div className="label">
-                                  <span className="label-text ">Category</span>
-                                </div>
-                                <select className="select select-bordered bg-[#F3F4F6]">
-                                  <option disabled selected>
-                                    Pick one
-                                  </option>
-                                  <option>Star Wars</option>
-                                  <option>Harry Potter</option>
-                                  <option>Lord of the Rings</option>
-                                  <option>Planet of the Apes</option>
-                                  <option>Star Trek</option>
-                                </select>
-                              </label>
-                            </div>
-                            <div className="flex  gap-x-10">
-                              <div className="py-4 px-4 bg-[#F3F4F6] border-[1px] max-w-44 rounded-lg">
-                                <DatePicker
-                                  selected={startDate}
-                                  className="bg-[#F3F4F6] w-[150px]"
-                                  onChange={(date) => setStartDate(date)}
-                                />
-                              </div>
-                              <div className="py-4 px-4 bg-[#F3F4F6] border-[1px] max-w-44 rounded-lg">
-                                <DatePicker
-                                  selected={startDate}
-                                  className="bg-[#F3F4F6]  w-[150px]"
-                                  onChange={(date) => setStartDate(date)}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            {" "}
-                            <button
-                              className={`flex flex-row btn w-[400px] btn-sm  h-auto
-        hover:bg-blue-700  text-lg font-normal text-white px-16 py-3 rounded-3xl ${
-          value === "Income" ? "bg-[#16A34A] text-white" : "bg-[#0166FF]"
-        }`}
-                            >
-                              <p> + Add Record</p>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-1/2 ml-7  ">
-                        <label className="form-control w-full  max-w-[400px]">
-                          <div className="label">
-                            <span className="label-text">Payee</span>
-                          </div>
-                          <input
-                            type="text"
-                            placeholder="Type here"
-                            className="input input-bordered w-full bg-[#F3F4F6]"
-                          />
-                        </label>
-                        <label className="form-control mt-5">
-                          <div className="label">
-                            <span className="label-text">Your bio</span>
-                          </div>
-                          <textarea
-                            className="textarea textarea-bordered h-[315px] bg-[#F3F4F6]"
-                            placeholder="Bio"
-                          ></textarea>
-                        </label>
-                      </div>
-                    </div>
+                    <ModalComponent></ModalComponent>
                   </div>
                 </div>
               )}
@@ -245,56 +134,93 @@ export const RecordPage = () => {
             </div>
             <div className="flex flex-col gap-y-4">
               <p className=" font-semibold">Amount Range</p>
-              <div className="flex gap-x-4">
+              <div className="flex gap-x-10">
                 <div className="w-[100px] rounded-lg bg-[#F3F4F6] border-2 h-12 flex items-center">
                   <p className=" pl-4">0</p>
                 </div>
-                <div className="w-[100px] rounded-lg bg-[#F3F4F6] border-2 flex items-center h-12">
+                <div className="w-[100px] rounded-lg bg-[#F3F4F6] border-2 flex items-center h-12 ">
                   <p className="pl-4">100</p>
                 </div>
-                s
               </div>
-              <div>
-                <input
-                  type="range"
-                  min={0}
-                  max="100"
-                  value="40"
-                  className="range range-info "
+              <div className="flex item">
+                <div className="w-4 h-4 rounded-full border-4 border-[#0166FF] left-2"></div>
+                <img
+                  src="./blueLine.svg"
+                  alt=""
+                  className=" mt-[3px] w-[210px] h-2"
                 />
+                <div className="w-4 h-4 rounded-full border-4 border-[#0166FF] ml-[-2px]"></div>
               </div>
               <div className="flex justify-between">
-                <p>0</p>
-                <p>100</p>
+                <p className=" ml-1">0</p>
+                <p className=" mr-3">100</p>
               </div>
             </div>
           </div>
           <div className="w-[1070px] border-2 h-32 py-6">
             <div className=" flex justify-between">
               {" "}
-              <div className="join pl-10">
-                <button className="join-item btn">«</button>
-                <button className="join-item btn">Page 22</button>
+              <div className="join pl-14 ">
+                <button className="join-item btn bg-[#F3F4F6]">«</button>
+                <button className="join-item btn bg-[#F3F4F6]">Page 22</button>
                 <button className="join-item btn">»</button>
               </div>
               <div>
-                <div>
-                  <details className="dropdown max-w-[384px] ">
-                    <summary className="m-1 btn border-2">
-                      Newest first <img src=" ./dropDown.svg" alt="" />
-                    </summary>
-                    <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                      <li>
-                        <a>Item 1</a>
-                      </li>
-                      <li>
-                        <a>Item 2</a>
-                      </li>
-                    </ul>
-                  </details>
-                </div>
+                <details className="dropdown max-w-[384px]  ">
+                  <summary className="m-1 btn border-2 ">
+                    Modify <img src=" ./dropDown.svg" alt="" />
+                  </summary>
+                  <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                    <li>
+                      <a>Newer to Older</a>
+                    </li>
+                    <li>
+                      <a>Older to Newer</a>
+                    </li>
+                  </ul>
+                </details>
               </div>
             </div>
+
+            <div className="flex bg-[#FFFFFF] justify-between px-6 py-3 rounded-lg border-[1px] mt-2">
+              <div className=" flex gap-x-4 ">
+                <input
+                  type="checkbox"
+                  defaultChecked
+                  className="checkbox border-zinc-200  [--chkbg:theme(colors.blue.600)] [--chkfg:white]"
+                />
+                <p>Select all</p>
+              </div>
+              <p>-35,500₮</p>
+            </div>
+            <div>
+              <p className=" font-semibold">Today</p>
+              <div className="flex bg-[#FFFFFF] justify-between px-6 py-3 rounded-lg border-[1px] mt-2">
+                <div className=" flex gap-x-4 align-baseline ">
+                  <input
+                    type="checkbox"
+                    defaultChecked
+                    className="checkbox border-zinc-200  [--chkbg:theme(colors.blue.600)] [--chkfg:white]"
+                  />
+                  <div
+                    className="bg-cover flex justify-center items-center"
+                    style={{
+                      backgroundImage: `url('/blueRound.svg')`,
+                      width: "30px",
+                      height: "30px",
+                    }}
+                  >
+                    <House size={18} color="white" weight="fill" />
+                  </div>
+                  <div className="">
+                    <p>Select all</p>{" "}
+                    <p className=" font-light text-xs">14:00</p>
+                  </div>
+                </div>
+                <p>-35,500₮</p>
+              </div>
+            </div>
+            <div></div>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ export default function Record() {
    return (
     <div>
       <div className="flex justify-center">
-        <div className="items-baseline  w-[1401px] border-2 flex justify-between bg-white top-0 my-5">
+        <div className="items-baseline  w-[1401px] flex justify-between bg-white top-0 my-5">
           <div className="flex gap-x-6 ">
             <img src="./Vector.svg" alt="" />
             <p>Dashboard</p>

@@ -5,3 +5,7 @@
 .input-class::placeholder {
     height: 14px; /* Adjust the font size as needed */
   }
+
+  .multi-range-slider-text {
+    display: none;
+}
