@@ -1,9 +1,7 @@
-import postgres from "postgres";
-import dotenv from "dotenv";
 import express, { json } from "express";
-import fs from "fs";
 import cors from "cors";
 import { sql } from "./config/database.js";
+
 
 const app = express();
 const port = 3001;
@@ -11,6 +9,8 @@ const port = 3001;
 app.use(cors());
 app.use(express.json());
 
+
+app.get("/users", user)
 app.get("/users", async (req, res) => {
   const data = await sql`SELECT * FROM users`;
   console.log(data);
