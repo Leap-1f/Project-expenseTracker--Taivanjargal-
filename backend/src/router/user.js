@@ -1,6 +1,9 @@
-import { Router} from "express";
+import { Router } from "express";
+import { getOneUser } from "../controller/user.js";
 
-import { Didi } from "../controller/user";
- const user = Router()
+const user = Router();
 
- user.route('/user').get(getOneUser).post()
+// user.route("/").get(getOneUser).post();
+user.get("/", getOneUser);
+
+export default user;

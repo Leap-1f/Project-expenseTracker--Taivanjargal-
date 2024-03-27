@@ -1,36 +1,17 @@
-import postgres from "postgres";
-import dotenv from "dotenv";
-import express, { json } from "express";
-import fs from "fs";
+import express from "express";
 import cors from "cors";
-import { sql } from "./config/database.js";
+import user from "./src/router/user.js";
 
 const app = express();
 const port = 3001;
-
 app.use(cors());
 app.use(express.json());
 
-app.get("/users", async (req, res) => {
-  const data = await sql`SELECT * FROM users`;
-  console.log(data);
-  res.send("hello world");
-});
+app.use("/users", user);
+
 app.listen(port, () => {
-  console.log(`http://localhost:${port}`);
+  console.log(`Server is running at http://localhost:${port}`);
 });
-// app.post("/users", (request, response) => {
-//   const newUser = request.body;
-//   try {
-//     const data = JSON.parse(fs.readFileSync("database.json", "utf-8"));
-//     data.push(newUser);
-//     fs.writeFileSync("database.json", JSON.stringify(data));
-//     response.status(200).send("User data saved successfully");
-//   } catch (error) {
-//     console.error("Error:", error);
-//     response.status(500).send("Internal server error");
-//   }
-// });
 
 // app.get('/users', async (req, res) => {
 // const data = await sql`SELECT * FROM users`
