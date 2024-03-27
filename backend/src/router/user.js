@@ -1,6 +1,6 @@
 import { Router} from "express";
 
-import { Didi } from "../controller/uset";
+import { Didi } from "../controller/user";
  const user = Router()
 
- user.route('/user').get(Didi).post()
+ user.route('/user').get(getOneUser).post()
